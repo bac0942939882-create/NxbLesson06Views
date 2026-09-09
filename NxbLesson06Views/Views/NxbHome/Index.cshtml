@@ -1,0 +1,20 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Thông tin sinh viên";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-5">Welcome to, @ViewData["Title"]</h1>
+    <p class="lead">ASP.NET Core MVC - .NET 8 LTS</p>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title">Thông tin sinh viên</h3>
+        <p><strong>Mã sinh viên:</strong> @Model.studentId</p>
+        <p><strong>Họ tên:</strong> @Model.studentName</p>
+        <p><strong>Lớp:</strong> @Model.studentClass</p>
+        <p><strong>Email:</strong> @Model.email</p>
+    </div>
+</div>
