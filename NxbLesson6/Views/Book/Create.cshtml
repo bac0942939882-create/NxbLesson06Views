@@ -1,0 +1,13 @@
+@model NxbLesson6.Models.Book
+@{ ViewData["Title"] = "Thêm mới sách"; }
+<h2>Thêm mới sách</h2>
+<form asp-action="Create" method="post" enctype="multipart/form-data" class="book-form">
+    <div class="form-group"><label asp-for="Title">Tên sách</label><input asp-for="Title" class="form-control" placeholder="Tên sách" /></div>
+    <div class="form-group"><label asp-for="AuthorId">Tác giả</label><select asp-for="AuthorId" class="form-control" asp-items="@ViewBag.authors"><option value="">Chọn tác giả</option></select></div>
+    <div class="form-group"><label asp-for="GenreId">Thể loại</label><select asp-for="GenreId" class="form-control" asp-items="@ViewBag.genres"><option value="">Chọn thể loại</option></select></div>
+    <div class="form-group"><label asp-for="Price">Giá sách</label><input asp-for="Price" class="form-control" placeholder="Giá sách" /></div>
+    <div class="form-group"><label asp-for="TotalPage">Tổng số trang</label><input asp-for="TotalPage" class="form-control" placeholder="Tổng số trang" /></div>
+    <div class="form-group"><label>Hình ảnh/Poster</label><input type="file" class="form-control" asp-for="Image" /></div>
+    <div class="form-group"><label asp-for="Summary">Giới thiệu ngắn</label><textarea asp-for="Summary" class="form-control" rows="4" placeholder="Nội dung giới thiệu sách..."></textarea></div>
+    <button type="submit" class="btn btn-primary">Lưu lại</button>
+</form>

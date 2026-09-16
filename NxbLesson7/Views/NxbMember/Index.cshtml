@@ -1,0 +1,32 @@
+@model List<NxbMember>
+@{
+    ViewData["Title"] = "Danh sách thành viên";
+}
+
+<div class="card">
+    <h1>@ViewData["Title"]</h1>
+    <p><a class="btn btn-primary" asp-action="Create">Thêm mới thành viên</a></p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Member Id</th>
+                <th>User Name</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.NxbMemberId</td>
+                <td>@member.NxbUserName</td>
+                <td>@member.NxbFullName</td>
+                <td>@member.NxbEmail</td>
+                <td><a asp-action="Detail" asp-route-id="@member.NxbMemberId">Xem</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,7 @@
+@model IEnumerable<NxbLesson6.Models.Book>
+<div class="row">
+@foreach (var item in Model)
+{
+    <div class="col-sm-3"><div class="thumbnail"><img src="@item.Image" alt="@item.Title" /><div class="caption"><h4>@item.Title</h4><p>Giá: @item.Price.ToString("N0")</p></div></div></div>
+}
+</div>

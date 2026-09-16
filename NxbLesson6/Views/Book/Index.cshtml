@@ -1,0 +1,23 @@
+@model IEnumerable<NxbLesson6.Models.Book>
+@{
+    ViewData["Title"] = "Danh sách các cuốn sách";
+}
+<h2>Danh sách các cuốn sách</h2>
+<form method="post" class="form-inline search-form">
+    <div class="form-group"><select name="AuthorId" class="form-control" asp-items="@ViewBag.authors"><option value="">Chọn tác giả</option></select></div>
+    <div class="form-group"><select name="GenreId" class="form-control" asp-items="@ViewBag.genres"><option value="">Chọn thể loại</option></select></div>
+    <button class="btn btn-primary">Tìm kiếm</button>
+    <a asp-action="Create" class="btn btn-danger">Thêm mới</a>
+</form>
+@if (TempData["Message"] != null) { <div class="alert alert-success">@TempData["Message"]</div> }
+<table class="table table-bordered table-hover">
+<thead><tr><th>Id</th><th>Tiêu đề</th><th>Tác giả</th><th>Thể loại</th><th>Giá</th><th>Hình ảnh</th><th></th></tr></thead>
+<tbody>
+@foreach (var book in Model)
+{
+<tr>
+<td>@book.Id</td><td>@book.Title</td><td>@book.AuthorId</td><td>@book.GenreId</td><td>@book.Price.ToString("N0")</td><td><img class="book-thumb" src="@book.Image" alt="@book.Title" /></td><td><a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-primary">Sửa</a></td>
+</tr>
+}
+</tbody>
+</table>

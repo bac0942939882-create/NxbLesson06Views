@@ -1,0 +1,41 @@
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+@{ await Html.RenderPartialAsync("_Banner"); }
+<div class="row section-gap">
+    <div class="col-md-3">
+        @{ await Html.RenderPartialAsync("_Categories"); }
+    </div>
+    <div class="col-md-9">
+        <div class="section-title">Sản phẩm mới nhất</div>
+        <div class="row product-grid">
+        @foreach (var item in Model.LatestProducts)
+        {
+            <div class="col-sm-4">
+                <div class="product-card">
+                    <img src="@item.Image" alt="@item.Name" />
+                    <h4>@item.Name</h4>
+                    <p class="price">@item.Price.ToString("N0") đ</p>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+</div>
+<div class="section-title">Sản phẩm nổi bật</div>
+<h4 class="component-note">Load từ BookViewComponent</h4>
+@await Component.InvokeAsync("Book")
+<div class="well ajax-demo">
+    <button id="loadAjax" class="btn btn-primary btn-sm">Click load book từ partialResult</button>
+    <div id="data-from-ajax" class="row ajax-result">Loading data....</div>
+</div>
+@section Scripts {
+<script>
+$(function () {
+    $('#loadAjax').click(function () {
+        $('#data-from-ajax').load('/Book/PopularBook');
+    });
+});
+</script>
+}

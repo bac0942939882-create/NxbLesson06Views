@@ -1,0 +1,42 @@
+@model NxbMember
+@{
+    ViewData["Title"] = "Thêm mới thành viên";
+}
+
+<div class="card">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <h3>NxbMember</h3>
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="NxbMemberId" class="control-label"></label>
+            <input asp-for="NxbMemberId" class="form-control" />
+            <span asp-validation-for="NxbMemberId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NxbUserName" class="control-label"></label>
+            <input asp-for="NxbUserName" class="form-control" />
+            <span asp-validation-for="NxbUserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NxbPassword" class="control-label"></label>
+            <input asp-for="NxbPassword" class="form-control" />
+            <span asp-validation-for="NxbPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NxbFullName" class="control-label"></label>
+            <input asp-for="NxbFullName" class="form-control" />
+            <span asp-validation-for="NxbFullName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NxbEmail" class="control-label"></label>
+            <input asp-for="NxbEmail" class="form-control" />
+            <span asp-validation-for="NxbEmail" class="text-danger"></span>
+        </div>
+
+        <input type="submit" value="Ghi lại" class="btn btn-primary" />
+        <a class="btn btn-secondary" asp-action="Index">Quay lại</a>
+    </form>
+</div>
