@@ -1,0 +1,12 @@
+@model NxbMember
+@{
+    ViewData["Title"] = "Create";
+}
+<h1>Create</h1>
+<h4>NxbMember</h4><hr />
+<form asp-action="Create" method="post" class="member-form">
+    <div asp-validation-summary="ModelOnly" class="error"></div>
+    <partial name="_MemberFields" model="Model" />
+    <button class="button" type="submit">Create</button>
+</form>
+<p><a asp-action="Index">Back to List</a></p>

@@ -1,0 +1,32 @@
+html { font-size: 16px; min-height: 100%; }
+body { margin: 0; color: #212529; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+a { color: #0d6efd; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { width: min(100% - 32px, 1140px); margin: 0 auto; }
+.navbar { box-shadow: 0 1px 4px #0002; padding: 13px 0; }
+.nav-inner { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.navbar a { color: #495057; }
+.navbar .brand { font-size: 20px; color: #212529; }
+main { padding-top: 24px; min-height: calc(100vh - 144px); }
+footer { padding: 16px 0; color: #6c757d; border-top: 1px solid #ddd; }
+h1 { font-size: 2.3rem; font-weight: 400; margin: 0 0 12px; }
+h4 { font-weight: 500; margin: 0 0 8px; }
+hr { border: 0; border-top: 1px solid #ddd; margin: 16px 0; }
+.welcome { text-align: center; }
+.welcome h1 { font-size: 4rem; margin: 0; font-weight: 300; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; border-bottom: 1px solid #dee2e6; padding: 8px; }
+th { border-bottom-width: 2px; }
+tbody tr:hover { background: #f8f9fa; }
+.member-form { max-width: 460px; }
+.form-row { margin-bottom: 16px; }
+.form-row label { display: block; font-weight: 500; margin-bottom: 7px; }
+.form-row input, .form-row select { box-sizing: border-box; display: block; width: 100%; border: 1px solid #ced4da; border-radius: 5px; font: inherit; padding: 6px 12px; }
+.form-row input:focus, .form-row select:focus { outline: 3px solid #86b7fe77; border-color: #86b7fe; }
+.button { background: #0d6efd; color: white; padding: 7px 14px; border: 1px solid #0d6efd; border-radius: 5px; cursor: pointer; font: inherit; }
+.button-danger { background: #dc3545; border-color: #dc3545; }
+.details { display: grid; grid-template-columns: 160px auto; row-gap: 8px; max-width: 560px; }
+.details dt { font-weight: 700; }
+.details dd { margin: 0; }
+.error { color: #dc3545; }

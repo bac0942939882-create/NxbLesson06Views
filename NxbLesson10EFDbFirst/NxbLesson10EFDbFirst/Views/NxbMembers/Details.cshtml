@@ -1,0 +1,13 @@
+@model NxbMember
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1><h4>NxbMember</h4><hr />
+<dl class="details">
+    <dt>NxbUserName</dt><dd>@Model.NxbUserName</dd>
+    <dt>NxbFullName</dt><dd>@Model.NxbFullName</dd>
+    <dt>NxbEmail</dt><dd>@Model.NxbEmail</dd>
+    <dt>NxbPhone</dt><dd>@Model.NxbPhone</dd>
+    <dt>NxbStatus</dt><dd>@Model.NxbStatus</dd>
+</dl>
+<p><a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> | <a asp-action="Index">Back to List</a></p>

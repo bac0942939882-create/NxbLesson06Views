@@ -1,0 +1,13 @@
+@model NxbMember
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1>Edit</h1>
+<h4>NxbMember</h4><hr />
+<form asp-action="Edit" method="post" class="member-form">
+    <div asp-validation-summary="ModelOnly" class="error"></div>
+    <input type="hidden" asp-for="Id" />
+    <partial name="_MemberFields" model="Model" />
+    <button class="button" type="submit">Save</button>
+</form>
+<p><a asp-action="Index">Back to List</a></p>

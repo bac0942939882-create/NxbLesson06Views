@@ -1,0 +1,16 @@
+@model NxbMember
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Delete</h1><h3>Are you sure you want to delete this?</h3><h4>NxbMember</h4><hr />
+<dl class="details">
+    <dt>NxbUserName</dt><dd>@Model.NxbUserName</dd>
+    <dt>NxbFullName</dt><dd>@Model.NxbFullName</dd>
+    <dt>NxbEmail</dt><dd>@Model.NxbEmail</dd>
+    <dt>NxbPhone</dt><dd>@Model.NxbPhone</dd>
+    <dt>NxbStatus</dt><dd>@Model.NxbStatus</dd>
+</dl>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button class="button button-danger" type="submit">Delete</button> | <a asp-action="Index">Back to List</a>
+</form>

@@ -1,0 +1,7 @@
+@model NxbMember
+<div class="form-row"><label asp-for="NxbUserName">NxbUserName</label><input asp-for="NxbUserName" /><span asp-validation-for="NxbUserName" class="error"></span></div>
+<div class="form-row"><label asp-for="NxbPassword">NxbPassword</label><input asp-for="NxbPassword" type="password" autocomplete="new-password" /><span asp-validation-for="NxbPassword" class="error"></span></div>
+<div class="form-row"><label asp-for="NxbFullName">NxbFullName</label><input asp-for="NxbFullName" /><span asp-validation-for="NxbFullName" class="error"></span></div>
+<div class="form-row"><label asp-for="NxbEmail">NxbEmail</label><input asp-for="NxbEmail" type="email" /><span asp-validation-for="NxbEmail" class="error"></span></div>
+<div class="form-row"><label asp-for="NxbPhone">NxbPhone</label><input asp-for="NxbPhone" type="tel" /><span asp-validation-for="NxbPhone" class="error"></span></div>
+<div class="form-row"><label asp-for="NxbStatus">NxbStatus</label><select asp-for="NxbStatus"><option value="">-- Chọn trạng thái --</option><option value="true">True</option><option value="false">False</option></select><span asp-validation-for="NxbStatus" class="error"></span></div>
