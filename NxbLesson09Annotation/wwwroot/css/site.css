@@ -1,0 +1,4 @@
+body { min-height: 100vh; background: #f8f9fb; } main { min-height: calc(100vh - 160px); }
+nav a { color: #eee; text-decoration: none; } nav a:hover { color: white; text-decoration: underline; }
+.input-validation-error { border-color: #dc3545; } .field-validation-error { color: #bd2130; font-size: .9rem; }
+.product-image { width: 120px; height: 85px; object-fit: cover; } .detail-image { max-width: 360px; max-height: 300px; object-fit: contain; }

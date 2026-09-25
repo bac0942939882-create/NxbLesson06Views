@@ -1,0 +1,11 @@
+@model ProductForm
+@{ var categories = (IReadOnlyList<Category>)ViewBag.Categories; }
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control" /><span asp-validation-for="Name"></span></div>
+<div class="mb-3"><label asp-for="CategoryId" class="form-label"></label><select asp-for="CategoryId" class="form-select"><option value="0">-- Chọn danh mục --</option>@foreach (var category in categories) { <option value="@category.Id">@category.Name</option> }</select><span asp-validation-for="CategoryId"></span></div>
+<div class="mb-3"><label asp-for="Price" class="form-label"></label><input asp-for="Price" type="text" class="form-control" inputmode="decimal" /><span asp-validation-for="Price"></span></div>
+<div class="mb-3"><label asp-for="SalePrice" class="form-label"></label><input asp-for="SalePrice" type="text" class="form-control" inputmode="decimal" /><span asp-validation-for="SalePrice"></span></div>
+<div class="mb-3"><label asp-for="Description" class="form-label"></label><textarea asp-for="Description" rows="5" class="form-control"></textarea><span asp-validation-for="Description"></span></div>
+<div class="mb-3"><label asp-for="ImageFile" class="form-label"></label><input asp-for="ImageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif" class="form-control" /><span asp-validation-for="ImageFile"></span><div class="form-text">JPG, PNG, WebP hoặc GIF, tối đa 5 MB. Khi sửa, có thể để trống để giữ ảnh hiện tại.</div></div>
+@if (!string.IsNullOrEmpty(Model.ExistingImage)) { <img class="product-image rounded mb-3" src="@Model.ExistingImage" alt="Ảnh hiện tại" /> }
+<div><button type="submit" class="btn btn-primary">Lưu sản phẩm</button> <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a></div>

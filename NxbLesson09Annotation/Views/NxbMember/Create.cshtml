@@ -1,0 +1,12 @@
+@model NxbMemberRegister
+@{ ViewData["Title"] = "Đăng ký thành viên"; }
+<h1>Đăng ký thành viên</h1><form asp-action="Create" method="post" class="card p-4 col-lg-7" novalidate>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="mb-3"><label asp-for="NxbUserName" class="form-label"></label><input asp-for="NxbUserName" class="form-control" /><span asp-validation-for="NxbUserName"></span></div>
+<div class="mb-3"><label asp-for="NxbPassword" class="form-label"></label><input asp-for="NxbPassword" class="form-control" /><span asp-validation-for="NxbPassword"></span></div>
+<div class="mb-3"><label asp-for="NxbEmail" class="form-label"></label><input asp-for="NxbEmail" class="form-control" /><span asp-validation-for="NxbEmail"></span></div>
+<div class="mb-3"><label asp-for="NxbPhoneNumber" class="form-label"></label><input asp-for="NxbPhoneNumber" class="form-control" /><span asp-validation-for="NxbPhoneNumber"></span></div>
+<div class="mb-3"><label asp-for="NxbFullName" class="form-label"></label><input asp-for="NxbFullName" class="form-control" /><span asp-validation-for="NxbFullName"></span></div>
+<div class="mb-3"><label asp-for="NxbBirthday" class="form-label"></label><input asp-for="NxbBirthday" class="form-control" type="date" /><span asp-validation-for="NxbBirthday"></span></div>
+<button class="btn btn-primary">Đăng ký</button></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

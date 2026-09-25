@@ -1,0 +1,6 @@
+@model IEnumerable<NxbMember>
+@{ ViewData["Title"] = "Danh sách thành viên"; }
+<h1>Danh sách thành viên</h1><p><a class="btn btn-primary" asp-action="Create">Đăng ký mới</a></p>
+<table class="table table-striped"><thead><tr><th>Mã</th><th>Tên đăng nhập</th><th>Họ và tên</th><th>Email</th><th>Số điện thoại</th><th>Ngày sinh</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.NxbMemberId</td><td>@item.NxbMemberName</td><td>@item.NxbFullName</td><td>@item.NxbEmail</td><td>@item.NxbPhoneNumber</td><td>@item.NxbBirthday.ToString("dd/MM/yyyy")</td></tr> }
+</tbody></table>

@@ -1,0 +1,4 @@
+@model ProductForm
+@{ ViewData["Title"] = "Thêm sản phẩm"; }
+<h1>Thêm sản phẩm</h1><form asp-action="Create" method="post" enctype="multipart/form-data" class="card p-4 col-lg-8" novalidate><partial name="_Form" model="Model" /></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

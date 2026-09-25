@@ -1,0 +1,15 @@
+@model Account
+@{ ViewData["Title"] = "Thêm Account"; }
+<h1>Thêm Account</h1><form asp-action="Create" method="post" class="card p-4 col-lg-8" novalidate>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="mb-3"><label asp-for="FullName" class="form-label"></label><input asp-for="FullName" class="form-control" /><span asp-validation-for="FullName"></span></div>
+<div class="mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email"></span></div>
+<div class="mb-3"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" class="form-control" /><span asp-validation-for="Phone"></span></div>
+<div class="mb-3"><label asp-for="Address" class="form-label"></label><input asp-for="Address" class="form-control" /><span asp-validation-for="Address"></span></div>
+<div class="mb-3"><label asp-for="Avatar" class="form-label"></label><input asp-for="Avatar" class="form-control" /><span asp-validation-for="Avatar"></span></div>
+<div class="mb-3"><label asp-for="Birthday" class="form-label"></label><input asp-for="Birthday" class="form-control" type="date" /><span asp-validation-for="Birthday"></span></div>
+<div class="mb-3"><label asp-for="Gender" class="form-label"></label><select asp-for="Gender" class="form-select"><option value="">-- Chọn giới tính --</option><option>Nam</option><option>Nữ</option><option>Khác</option></select><span asp-validation-for="Gender"></span></div>
+<div class="mb-3"><label asp-for="Password" class="form-label"></label><input asp-for="Password" class="form-control" /><span asp-validation-for="Password"></span></div>
+<div class="mb-3"><label asp-for="Facebook" class="form-label"></label><input asp-for="Facebook" class="form-control" /><span asp-validation-for="Facebook"></span></div>
+<div><button class="btn btn-primary">Tạo Account</button> <a asp-action="Index" class="btn btn-outline-secondary">Quay lại</a></div></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
