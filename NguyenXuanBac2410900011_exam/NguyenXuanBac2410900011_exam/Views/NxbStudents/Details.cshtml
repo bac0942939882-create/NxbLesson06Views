@@ -1,0 +1,5 @@
+@model NxbStudent
+@{ ViewData["Title"] = "Chi tiết sinh viên"; }
+<a asp-action="Index" class="back-link">← Danh sách sinh viên</a>
+<div class="page-heading"><div><p class="eyebrow">HỒ SƠ #@Model.Id.ToString("D3")</p><h1>@Model.NxbName</h1><p class="subtitle">Thông tin chi tiết của sinh viên.</p></div><a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Chỉnh sửa hồ sơ</a></div>
+<section class="surface detail-panel"><h2 class="mb-4">Thông tin sinh viên</h2><partial name="_NxbStudentDetails" model="Model" /><div class="form-actions"><a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a><a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Xóa sinh viên</a></div></section>

@@ -1,0 +1,49 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    var isStudents = controller == "NxbStudents";
+    var isAbout = controller == "Home" && action == "NxbAbout";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#102e36" />
+    <title>@ViewData["Title"] · NXB Student</title>
+    <link rel="icon" type="image/svg+xml" href="~/images/brand.svg" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Chuyển đến nội dung</a>
+    <div class="app-shell">
+        <aside class="app-sidebar">
+            <a class="brand" asp-controller="Home" asp-action="Index"><span class="brand-symbol">N</span><span>NXB<span class="brand-caption">STUDENT MANAGER</span></span></a>
+            <p class="nav-label">KHÔNG GIAN QUẢN LÝ</p>
+            <nav class="side-nav" aria-label="Điều hướng chính">
+                <a class="@(!isStudents && !isAbout ? "active" : "")" asp-controller="Home" asp-action="Index" aria-current="@(!isStudents && !isAbout ? "page" : null)"><span aria-hidden="true">01</span> Tổng quan</a>
+                <a class="@(isStudents ? "active" : "")" asp-controller="NxbStudents" asp-action="Index" aria-current="@(isStudents ? "page" : null)"><span aria-hidden="true">02</span> Danh sách sinh viên</a>
+                <a class="@(isAbout ? "active" : "")" asp-controller="Home" asp-action="NxbAbout" aria-current="@(isAbout ? "page" : null)"><span aria-hidden="true">03</span> Thông tin sinh viên</a>
+            </nav>
+            <div class="sidebar-note"><span class="note-line"></span><strong>Mỗi hồ sơ,<br />một hành trình.</strong><p>Quản lý thông tin sinh viên<br />rõ ràng và thuận tiện.</p></div>
+            <div class="sidebar-author"><span class="avatar small-avatar">NB</span><div><strong>Nguyễn Xuân Bắc</strong><span>2410900011</span></div></div>
+        </aside>
+        <div class="main-shell">
+            <header class="topbar"><span>Quản lý sinh viên <span class="topbar-slash">/</span> @ViewData["Title"]</span><span class="workspace-label"><span></span> Không gian học tập</span></header>
+            <main id="main-content" class="page-content">
+                @if (TempData["Success"] is string success)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="status">@success<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng thông báo"></button></div>
+                }
+                @RenderBody()
+            </main>
+            <footer class="page-footer"><span>Nguyễn Xuân Bắc · 2410900011</span><span>NXB Student Manager</span></footer>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

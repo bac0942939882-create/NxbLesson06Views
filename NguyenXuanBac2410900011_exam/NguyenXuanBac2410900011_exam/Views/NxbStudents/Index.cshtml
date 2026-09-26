@@ -1,0 +1,44 @@
+@model NxbStudentListViewModel
+@{ ViewData["Title"] = "Danh sách sinh viên"; }
+<div class="page-heading"><div><p class="eyebrow">QUẢN LÝ HỒ SƠ</p><h1>Danh sách sinh viên</h1><p class="subtitle">Tra cứu và cập nhật thông tin sinh viên của bạn.</p></div><a class="btn btn-primary" asp-action="Create"><span aria-hidden="true">＋</span> Thêm sinh viên</a></div>
+<div class="stats-grid">
+    <div class="stat-card"><div><p>Tổng số sinh viên</p><strong>@Model.TotalStudents.ToString("D2")</strong></div><span class="stat-icon" aria-hidden="true">SV</span></div>
+    <div class="stat-card"><div><p>Đang hoạt động</p><strong>@Model.ActiveStudents.ToString("D2")</strong></div><span class="stat-dot active-dot" aria-hidden="true"></span></div>
+    <div class="stat-card"><div><p>Ngừng hoạt động</p><strong>@((Model.TotalStudents - Model.ActiveStudents).ToString("D2"))</strong></div><span class="stat-dot inactive-dot" aria-hidden="true"></span></div>
+</div>
+<section class="surface student-list">
+    <form method="get" asp-action="Index" class="filter-bar">
+        <div class="search-field"><label for="search" class="visually-hidden">Tìm sinh viên</label><input type="search" id="search" name="search" value="@Model.Search" class="form-control" maxlength="100" placeholder="Tìm theo họ tên, email, số điện thoại..." /></div>
+        <div class="status-filter"><label for="active" class="visually-hidden">Lọc theo trạng thái</label><select id="active" name="active" class="form-select"><option value="">Tất cả trạng thái</option><option value="true" selected="@(Model.Active == true)">Đang hoạt động</option><option value="false" selected="@(Model.Active == false)">Ngừng hoạt động</option></select></div>
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        @if (!string.IsNullOrEmpty(Model.Search) || Model.Active.HasValue) { <a asp-action="Index" class="btn btn-outline-secondary">Bỏ lọc</a> }
+    </form>
+    <div class="list-caption"><h2>Hồ sơ sinh viên <span class="count-label">@Model.TotalMatches</span></h2><span>Thông tin được lưu trong cơ sở dữ liệu</span></div>
+    @if (Model.Students.Count == 0)
+    {
+        <div class="empty-state"><span class="empty-symbol" aria-hidden="true">∅</span><h3>Chưa tìm thấy sinh viên</h3><p>Thử thay đổi từ khóa, bỏ bộ lọc hoặc thêm hồ sơ mới.</p><a asp-action="Create" class="btn btn-primary">Thêm sinh viên</a></div>
+    }
+    else
+    {
+        <div class="table-responsive"><table class="table student-table align-middle"><caption class="visually-hidden">Danh sách sinh viên và các thao tác xem, sửa, xóa</caption><thead><tr><th scope="col">SINH VIÊN</th><th scope="col">GIỚI TÍNH</th><th scope="col">NGÀY SINH</th><th scope="col">LIÊN HỆ</th><th scope="col">TRẠNG THÁI</th><th scope="col" class="text-end">THAO TÁC</th></tr></thead><tbody>
+        @foreach (var item in Model.Students)
+        {
+            <tr><td><div class="student-cell"><span class="avatar" aria-hidden="true">@item.NxbName.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries).LastOrDefault()?.FirstOrDefault()</span><div><a class="student-name" asp-action="Details" asp-route-id="@item.Id">@item.NxbName</a><span class="student-id">#@item.Id.ToString("D3")</span></div></div></td>
+                <td>@item.NxbGender</td><td class="text-nowrap">@item.NxbBirthDay.ToString("dd/MM/yyyy")</td>
+                <td><div class="contact-cell"><span>@item.NxbEmail</span><span>@item.NxbPhone</span></div></td>
+                <td><span class="status-badge @(item.NxbActive ? "status-active" : "status-inactive")">@(item.NxbActive ? "Đang hoạt động" : "Ngừng hoạt động")</span></td>
+                <td><div class="row-actions"><a asp-action="Details" asp-route-id="@item.Id" aria-label="Xem @item.NxbName">Xem</a><a asp-action="Edit" asp-route-id="@item.Id" aria-label="Sửa @item.NxbName">Sửa</a><a class="delete-link" asp-action="Delete" asp-route-id="@item.Id" aria-label="Xóa @item.NxbName">Xóa</a></div></td></tr>
+        }
+        </tbody></table></div>
+    }
+    <div class="list-footer"><span>@Model.TotalMatches kết quả · Trang @Model.Page / @Model.PageCount</span>
+    @if (Model.PageCount > 1)
+    {
+        <nav aria-label="Phân trang sinh viên" class="d-flex gap-2">
+            @if (Model.Page > 1) { <a class="btn btn-sm btn-outline-secondary" asp-action="Index" asp-route-page="@(Model.Page - 1)" asp-route-search="@Model.Search" asp-route-active="@Model.Active">← Trước</a> }
+            @if (Model.Page < Model.PageCount) { <a class="btn btn-sm btn-outline-secondary" asp-action="Index" asp-route-page="@(Model.Page + 1)" asp-route-search="@Model.Search" asp-route-active="@Model.Active">Sau →</a> }
+        </nav>
+    }
+    </div>
+</section>
+<p class="demo-note">Các hồ sơ ban đầu là dữ liệu minh họa phục vụ bài thực hành.</p>

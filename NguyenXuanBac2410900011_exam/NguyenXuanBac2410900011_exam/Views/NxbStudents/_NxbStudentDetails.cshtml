@@ -1,0 +1,10 @@
+@model NxbStudent
+<dl class="info-list">
+    <div><dt>@Html.DisplayNameFor(m => m.Id)</dt><dd>#@Model.Id.ToString("D3")</dd></div>
+    <div><dt>@Html.DisplayNameFor(m => m.NxbName)</dt><dd>@Model.NxbName</dd></div>
+    <div><dt>@Html.DisplayNameFor(m => m.NxbGender)</dt><dd>@Model.NxbGender</dd></div>
+    <div><dt>@Html.DisplayNameFor(m => m.NxbBirthDay)</dt><dd>@Model.NxbBirthDay.ToString("dd/MM/yyyy")</dd></div>
+    <div><dt>@Html.DisplayNameFor(m => m.NxbEmail)</dt><dd class="break-anywhere">@Model.NxbEmail</dd></div>
+    <div><dt>@Html.DisplayNameFor(m => m.NxbPhone)</dt><dd>@Model.NxbPhone</dd></div>
+    <div><dt>Trạng thái</dt><dd><span class="status-badge @(Model.NxbActive ? "status-active" : "status-inactive")">@(Model.NxbActive ? "Đang hoạt động" : "Ngừng hoạt động")</span></dd></div>
+</dl>
