@@ -1,0 +1,12 @@
+@{ ViewData["Title"] = "Tổng quan"; }
+<div class="page-heading"><div><p class="eyebrow">NXB STUDENT MANAGER</p><h1>Xin chào, Xuân Bắc.</h1><p class="subtitle">Một nơi để theo dõi và quản lý thông tin sinh viên.</p></div><span class="outlined-tag">BÀI THỰC HÀNH MVC</span></div>
+<section class="welcome-panel">
+    <div class="welcome-copy"><span class="hero-tag">Gọn gàng. Dễ tìm. Dễ quản lý.</span><h2>Thông tin sinh viên,<br />trong tầm tay bạn.</h2><p>Tra cứu hồ sơ, cập nhật thông tin và theo dõi trạng thái hoạt động ngay trong một không gian.</p><a class="btn btn-light btn-lg" asp-controller="NxbStudents" asp-action="Index">Mở danh sách sinh viên <span aria-hidden="true">↗</span></a></div>
+    <div class="hero-art" aria-hidden="true"><div class="art-ring"></div><div class="art-profile"><span class="art-avatar">SV</span><span class="art-line"></span><span class="art-line short"></span><div class="art-status">● Đang hoạt động</div></div><span class="art-count">HỒ SƠ SINH VIÊN</span></div>
+</section>
+<div class="section-heading"><h2>Bắt đầu tại đây</h2><span>Thao tác nhanh</span></div>
+<div class="row g-4">
+    <div class="col-md-4"><a class="quick-card" asp-controller="NxbStudents" asp-action="Index"><span class="card-number">01 / DANH SÁCH</span><h3>Tra cứu sinh viên <span>↗</span></h3><p>Tìm kiếm theo họ tên, email, số điện thoại và lọc theo trạng thái.</p></a></div>
+    <div class="col-md-4"><a class="quick-card" asp-controller="NxbStudents" asp-action="Create"><span class="card-number">02 / THÊM MỚI</span><h3>Tạo hồ sơ mới <span>↗</span></h3><p>Bổ sung thông tin sinh viên với biểu mẫu có kiểm tra dữ liệu.</p></a></div>
+    <div class="col-md-4"><a class="quick-card" asp-controller="Home" asp-action="NxbAbout"><span class="card-number">03 / GIỚI THIỆU</span><h3>Thông tin sinh viên <span>↗</span></h3><p>Xem thông tin người thực hiện và nội dung bài thực hành.</p></a></div>
+</div>

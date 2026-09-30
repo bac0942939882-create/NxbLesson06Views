@@ -1,0 +1,5 @@
+@model NxbStudent
+@{ ViewData["Title"] = "Xóa sinh viên"; }
+<a asp-action="Index" class="back-link">← Danh sách sinh viên</a>
+<div class="page-heading"><div><p class="eyebrow">XÁC NHẬN THAO TÁC</p><h1>Xóa sinh viên</h1><p class="subtitle">Vui lòng kiểm tra hồ sơ trước khi xác nhận.</p></div></div>
+<section class="surface detail-panel"><div class="alert alert-danger"><strong>Bạn muốn xóa @Model.NxbName?</strong><div class="mt-1">Hồ sơ sẽ bị xóa khỏi cơ sở dữ liệu. Thao tác này không thể hoàn tác trong ứng dụng.</div></div><partial name="_NxbStudentDetails" model="Model" /><form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="form-actions"><input type="hidden" asp-for="Id" /><a asp-action="Index" class="btn btn-outline-secondary">Hủy, giữ lại hồ sơ</a><button type="submit" class="btn btn-danger">Xác nhận xóa</button></form></section>

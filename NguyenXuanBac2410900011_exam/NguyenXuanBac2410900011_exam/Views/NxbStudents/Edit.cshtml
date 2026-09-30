@@ -1,0 +1,9 @@
+@model NxbStudent
+@{ ViewData["Title"] = "Chỉnh sửa sinh viên"; }
+<a asp-action="Index" class="back-link">← Danh sách sinh viên</a>
+<div class="page-heading"><div><p class="eyebrow">CẬP NHẬT HỒ SƠ #@Model.Id.ToString("D3")</p><h1>Chỉnh sửa sinh viên</h1><p class="subtitle">Cập nhật thông tin của @Model.NxbName.</p></div></div>
+<div class="row g-4">
+    <div class="col-xl-8"><section class="surface form-panel"><h2>Thông tin cá nhân</h2><p class="form-intro">Các trường có dấu <span class="required-mark">*</span> là bắt buộc.</p><form asp-action="Edit" asp-route-id="@Model.Id" method="post"><input type="hidden" asp-for="Id" /><partial name="_NxbStudentFields" model="Model" /><div class="form-actions"><a asp-action="Index" class="btn btn-outline-secondary">Hủy</a><button type="submit" class="btn btn-primary">Lưu thay đổi</button></div></form></section></div>
+    <div class="col-xl-4"><aside class="hint-card"><span class="card-number">CẬP NHẬT THÔNG TIN</span><h3>Kiểm tra trước khi lưu</h3><p>Thông tin mới sẽ thay thế thông tin hiện tại của hồ sơ này.</p><a asp-action="Details" asp-route-id="@Model.Id" class="text-link">Xem hồ sơ hiện tại →</a></aside></div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

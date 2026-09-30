@@ -1,0 +1,9 @@
+@model NxbStudent
+@{ ViewData["Title"] = "Thêm sinh viên"; }
+<a asp-action="Index" class="back-link">← Danh sách sinh viên</a>
+<div class="page-heading"><div><p class="eyebrow">HỒ SƠ MỚI</p><h1>Thêm sinh viên</h1><p class="subtitle">Nhập thông tin để tạo một hồ sơ sinh viên mới.</p></div></div>
+<div class="row g-4">
+    <div class="col-xl-8"><section class="surface form-panel"><h2>Thông tin cá nhân</h2><p class="form-intro">Các trường có dấu <span class="required-mark">*</span> là bắt buộc.</p><form asp-action="Create" method="post"><partial name="_NxbStudentFields" model="Model" /><div class="form-actions"><a asp-action="Index" class="btn btn-outline-secondary">Hủy</a><button type="submit" class="btn btn-primary">Lưu sinh viên</button></div></form></section></div>
+    <div class="col-xl-4"><aside class="hint-card"><span class="card-number">LƯU Ý KHI NHẬP</span><h3>Một hồ sơ đầy đủ</h3><p>Nhập đúng họ tên, ngày sinh và thông tin liên hệ để thuận tiện cho việc tra cứu sau này.</p><hr /><p class="mb-0">Mã bản ghi được tạo tự động khi lưu. Bạn có thể chỉnh sửa thông tin bất cứ lúc nào.</p></aside></div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
