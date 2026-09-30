@@ -1,0 +1,9 @@
+@model Student
+@{ ViewData["Title"] = "Xóa sinh viên"; }
+<h1>Xóa sinh viên</h1>
+<p class="text-danger">Bạn có chắc chắn muốn xóa bản ghi này?</p>
+<div asp-validation-summary="All" class="text-danger mb-3"></div>
+<div class="panel p-4"><partial name="_Details" model="Model" /></div>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="mt-3">
+<input type="hidden" asp-for="Id" /><button class="btn btn-danger" type="submit">Xác nhận xóa</button> <a asp-action="Index" class="btn btn-outline-secondary">Hủy</a>
+</form>

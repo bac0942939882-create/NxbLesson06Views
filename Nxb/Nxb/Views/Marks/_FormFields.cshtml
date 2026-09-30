@@ -1,0 +1,14 @@
+@model MarksForm
+<div class="mb-3"><label asp-for="StudentId" class="form-label"></label>
+@if (ViewData["ReadOnlyKeys"] is true)
+{ <input type="hidden" asp-for="StudentId" /><select asp-for="StudentId" asp-items="ViewBag.StudentId" disabled class="form-select"></select> }
+else { <select asp-for="StudentId" asp-items="ViewBag.StudentId" class="form-select"><option value="">-- Chọn --</option></select> }
+<span asp-validation-for="StudentId" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="SubjectId" class="form-label"></label>
+@if (ViewData["ReadOnlyKeys"] is true)
+{ <input type="hidden" asp-for="SubjectId" /><select asp-for="SubjectId" asp-items="ViewBag.SubjectId" disabled class="form-select"></select> }
+else { <select asp-for="SubjectId" asp-items="ViewBag.SubjectId" class="form-select"><option value="">-- Chọn --</option></select> }
+<span asp-validation-for="SubjectId" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Score" class="form-label"></label>
+<input asp-for="Score" type="number" step="any" min="0" max="10" class="form-control" />
+<span asp-validation-for="Score" class="text-danger"></span></div>

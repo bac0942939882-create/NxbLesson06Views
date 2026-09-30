@@ -1,0 +1,10 @@
+@model StdClass
+@{ ViewData["Title"] = "Thêm mới lớp";  }
+<h1>Thêm mới lớp</h1>
+<form asp-action="Create"  method="post" enctype="multipart/form-data" class="panel p-4 form-panel">
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<partial name="_FormFields" model="Model" />
+<button type="submit" class="btn btn-success">Lưu lại</button> <a asp-action="Index" class="btn btn-outline-secondary">Về danh sách</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

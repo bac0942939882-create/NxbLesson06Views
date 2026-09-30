@@ -1,0 +1,17 @@
+@model IEnumerable<Marks>
+@{ ViewData["Title"] = "Danh sách điểm"; }
+<div class="page-heading"><h1>Danh sách điểm</h1><a asp-action="Create" class="btn btn-success">Thêm mới</a></div>
+<div class="table-responsive panel"><table class="table table-hover align-middle mb-0">
+<thead><tr><th>Sinh viên</th><th>Môn học</th><th>Điểm</th><th>Thao tác</th></tr></thead><tbody>
+@foreach (var item in Model)
+{
+    <tr><td>@item.Student.StudentName</td>
+<td>@item.Subject.SubjectName</td>
+<td>@item.Score</td><td class="actions">
+        <a asp-action="Edit" asp-route-subjectId="@item.SubjectId" asp-route-studentId="@item.StudentId" class="btn btn-primary btn-sm">Sửa</a>
+        <a asp-action="Details" asp-route-subjectId="@item.SubjectId" asp-route-studentId="@item.StudentId" class="btn btn-outline-success btn-sm">Chi tiết</a>
+        <a asp-action="Delete" asp-route-subjectId="@item.SubjectId" asp-route-studentId="@item.StudentId" class="btn btn-danger btn-sm">Xóa</a>
+    </td></tr>
+}
+@if (!Model.Any()) { <tr><td colspan="4" class="text-center py-4 text-muted">Chưa có dữ liệu.</td></tr> }
+</tbody></table></div>

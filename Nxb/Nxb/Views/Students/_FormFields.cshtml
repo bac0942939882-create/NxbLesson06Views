@@ -1,0 +1,24 @@
+@model StudentForm
+<div class="mb-3"><label asp-for="StudentName" class="form-label"></label>
+<input asp-for="StudentName" type="text" class="form-control" />
+<span asp-validation-for="StudentName" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="StudentEmail" class="form-label"></label>
+<input asp-for="StudentEmail" type="email" class="form-control" />
+<span asp-validation-for="StudentEmail" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="StudentPhone" class="form-label"></label>
+<input asp-for="StudentPhone" type="tel" class="form-control" />
+<span asp-validation-for="StudentPhone" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="StudentAddress" class="form-label"></label>
+<input asp-for="StudentAddress" type="text" class="form-control" />
+<span asp-validation-for="StudentAddress" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="ImageFile" class="form-label"></label>
+<input asp-for="ImageFile" type="file" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" />
+<div class="form-text">JPG, PNG, GIF, WebP; tối đa 5 MB. Khi sửa, để trống để giữ ảnh hiện tại.</div>
+@if (!string.IsNullOrWhiteSpace(Model.CurrentImage)) { <img src="/Avatar/@Model.CurrentImage" alt="Ảnh hiện tại" class="preview-image mt-2" /> }
+<span asp-validation-for="ImageFile" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="StudentBirthday" class="form-label"></label>
+<input asp-for="StudentBirthday" type="date" class="form-control" />
+<span asp-validation-for="StudentBirthday" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="ClassId" class="form-label"></label>
+<select asp-for="ClassId" asp-items="ViewBag.ClassId" class="form-select"><option value="">-- Chọn --</option></select>
+<span asp-validation-for="ClassId" class="text-danger"></span></div>

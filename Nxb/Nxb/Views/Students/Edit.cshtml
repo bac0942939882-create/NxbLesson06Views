@@ -1,0 +1,10 @@
+@model StudentForm
+@{ ViewData["Title"] = "Chỉnh sửa sinh viên";  }
+<h1>Chỉnh sửa sinh viên</h1>
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" class="panel p-4 form-panel">
+<div asp-validation-summary="All" class="text-danger"></div>
+<input type="hidden" asp-for="Id" />
+<partial name="_FormFields" model="Model" />
+<button type="submit" class="btn btn-success">Lưu lại</button> <a asp-action="Index" class="btn btn-outline-secondary">Về danh sách</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

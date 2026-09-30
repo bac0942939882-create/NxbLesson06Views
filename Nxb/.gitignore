@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.log
+Nxb/wwwroot/Product/*-upload.*
+Nxb/wwwroot/Banner/*-upload.*
+Nxb/wwwroot/Avatar/*-upload.*

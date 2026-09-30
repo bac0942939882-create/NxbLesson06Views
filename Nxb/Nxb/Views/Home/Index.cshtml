@@ -1,0 +1,26 @@
+@model HomeViewModel
+@{ ViewData["Title"] = "Trang chủ"; }
+@if (Model.Banners.Count > 0)
+{
+    <div id="homeBanners" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+        @for (int i = 0; i < Model.Banners.Count; i++)
+        { <button type="button" data-bs-target="#homeBanners" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-label="Banner @(i + 1)"></button> }
+        </div>
+        <div class="carousel-inner rounded">
+        @for (int i = 0; i < Model.Banners.Count; i++)
+        {
+            var banner = Model.Banners[i];
+            <div class="carousel-item @(i == 0 ? "active" : "")"><img src="/Banner/@banner.Image" class="d-block w-100 banner-image" alt="@banner.Name" />
+            <div class="carousel-caption"><h1 class="h3">@banner.Name</h1><p>@banner.Description</p><a asp-action="Product" class="btn btn-light btn-sm">Xem sản phẩm</a></div></div>
+        }
+        </div>
+        @if (Model.Banners.Count > 1)
+        {
+            <button class="carousel-control-prev" type="button" data-bs-target="#homeBanners" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Trước</span></button>
+            <button class="carousel-control-next" type="button" data-bs-target="#homeBanners" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Sau</span></button>
+        }
+    </div>
+}
+<div class="page-heading"><h2 class="h3">Sản phẩm nổi bật</h2><a asp-action="Product" class="btn btn-outline-primary btn-sm">Xem tất cả</a></div>
+<partial name="_ProductCards" model="Model.Products" />

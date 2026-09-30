@@ -1,0 +1,7 @@
+@model Category
+<dl class="row mb-0">
+<dt class="col-sm-3">Mã</dt><dd class="col-sm-9">@Model.Id</dd>
+<dt class="col-sm-3">Tên danh mục</dt><dd class="col-sm-9">@Model.Name</dd>
+<dt class="col-sm-3">Trạng thái</dt><dd class="col-sm-9"><span class="badge @(Model.Status == 1 ? "bg-success" : "bg-secondary")">@(Model.Status == 1 ? "Hiển thị" : "Tạm ẩn")</span></dd>
+<dt class="col-sm-3">Ngày tạo</dt><dd class="col-sm-9">@Model.CreatedDate.ToString("dd/MM/yyyy HH:mm")</dd>
+</dl>

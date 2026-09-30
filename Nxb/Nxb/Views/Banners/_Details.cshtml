@@ -1,0 +1,9 @@
+@model Banner
+<dl class="row mb-0">
+<dt class="col-sm-3">Mã</dt><dd class="col-sm-9">@Model.Id</dd>
+<dt class="col-sm-3">Tên banner</dt><dd class="col-sm-9">@Model.Name</dd>
+<dt class="col-sm-3">Ảnh</dt><dd class="col-sm-9"><img class="table-image" src="/Banner/@Model.Image" alt="Ảnh" /></dd>
+<dt class="col-sm-3">Mô tả</dt><dd class="col-sm-9">@Model.Description</dd>
+<dt class="col-sm-3">Ngày tạo</dt><dd class="col-sm-9">@Model.CreatedDate.ToString("dd/MM/yyyy HH:mm")</dd>
+<dt class="col-sm-3">Trạng thái</dt><dd class="col-sm-9"><span class="badge @(Model.Status == 1 ? "bg-success" : "bg-secondary")">@(Model.Status == 1 ? "Hiển thị" : "Tạm ẩn")</span></dd>
+</dl>

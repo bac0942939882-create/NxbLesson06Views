@@ -1,0 +1,11 @@
+@model Student
+<dl class="row mb-0">
+<dt class="col-sm-3">Mã</dt><dd class="col-sm-9">@Model.Id</dd>
+<dt class="col-sm-3">Họ tên</dt><dd class="col-sm-9">@Model.StudentName</dd>
+<dt class="col-sm-3">Ảnh đại diện</dt><dd class="col-sm-9"><img class="table-image" src="/Avatar/@Model.StudentAvatar" alt="Ảnh" /></dd>
+<dt class="col-sm-3">Email</dt><dd class="col-sm-9">@Model.StudentEmail</dd>
+<dt class="col-sm-3">SĐT</dt><dd class="col-sm-9">@Model.StudentPhone</dd>
+<dt class="col-sm-3">Địa chỉ</dt><dd class="col-sm-9">@Model.StudentAddress</dd>
+<dt class="col-sm-3">Ngày sinh</dt><dd class="col-sm-9">@Model.StudentBirthday.ToString("dd/MM/yyyy")</dd>
+<dt class="col-sm-3">Lớp</dt><dd class="col-sm-9">@Model.Class.ClassName</dd>
+</dl>

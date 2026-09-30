@@ -1,0 +1,22 @@
+@model IEnumerable<Product>
+@{ ViewData["Title"] = "Danh sách sản phẩm"; }
+<div class="page-heading"><h1>Danh sách sản phẩm</h1><a asp-action="Create" class="btn btn-success">Thêm mới</a></div>
+<div class="table-responsive panel"><table class="table table-hover align-middle mb-0">
+<thead><tr><th>Tên sản phẩm</th><th>Ảnh</th><th>Giá</th><th>Giá giảm</th><th>Trạng thái</th><th>Mô tả</th><th>Ngày tạo</th><th>Danh mục</th><th>Thao tác</th></tr></thead><tbody>
+@foreach (var item in Model)
+{
+    <tr><td>@item.Name</td>
+<td><img class="table-image" src="/Product/@item.Image" alt="Ảnh" /></td>
+<td>@item.Price.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) đ</td>
+<td>@item.SalePrice.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) đ</td>
+<td><span class="badge @(item.Status == 1 ? "bg-success" : "bg-secondary")">@(item.Status == 1 ? "Hiển thị" : "Tạm ẩn")</span></td>
+<td>@item.Descriptions</td>
+<td>@item.CreatedDate.ToString("dd/MM/yyyy HH:mm")</td>
+<td>@item.Category.Name</td><td class="actions">
+        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Sửa</a>
+        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-success btn-sm">Chi tiết</a>
+        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
+    </td></tr>
+}
+@if (!Model.Any()) { <tr><td colspan="9" class="text-center py-4 text-muted">Chưa có dữ liệu.</td></tr> }
+</tbody></table></div>

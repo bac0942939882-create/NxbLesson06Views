@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>@ViewData["Title"] - Nxb</title>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /></head>
+<body>
+<header><nav class="navbar navbar-expand-lg navbar-dark bg-dark"><div class="container">
+<a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">Nxb</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Mở menu"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="navigation"><ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Product">Sản phẩm</a></li>
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Quản lý bán hàng</a><ul class="dropdown-menu">
+<li><a class="dropdown-item" asp-controller="Categories" asp-action="Index">Danh mục</a></li>
+<li><a class="dropdown-item" asp-controller="Products" asp-action="Index">Sản phẩm</a></li>
+<li><a class="dropdown-item" asp-controller="Banners" asp-action="Index">Banner</a></li></ul></li>
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Quản lý sinh viên</a><ul class="dropdown-menu">
+<li><a class="dropdown-item" asp-controller="StdClasses" asp-action="Index">Lớp</a></li>
+<li><a class="dropdown-item" asp-controller="Students" asp-action="Index">Sinh viên</a></li>
+<li><a class="dropdown-item" asp-controller="Subjects" asp-action="Index">Môn học</a></li>
+<li><a class="dropdown-item" asp-controller="Marks" asp-action="Index">Điểm</a></li></ul></li>
+</ul></div></div></nav></header>
+<main class="container py-4">
+@if (TempData["Success"] is string message) { <div class="alert alert-success" role="status">@message</div> }
+@RenderBody()
+</main>
+<footer class="border-top py-3 text-muted"><div class="container">Nxb &copy; @DateTime.Now.Year</div></footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body></html>
