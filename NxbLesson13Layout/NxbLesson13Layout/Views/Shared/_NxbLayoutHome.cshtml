@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/NxbLayoutHome.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="container border my-1 p-2" aria-label="Menu sản phẩm">
+        <div>
+            <a asp-controller="Products" asp-action="Index" title="Danh sách sản phẩm">Danh sách sản phẩm</a>
+            <a asp-controller="Products" asp-action="Search">Tìm kiếm sản phẩm</a>
+            <a asp-controller="Products" asp-action="Hots">Sản phẩm bán chạy</a>
+            <a asp-controller="Products" asp-action="About">Giới thiệu</a>
+        </div>
+    </nav>
+    <main class="container border my-1 p-2 main">
+        @RenderBody()
+    </main>
+    <footer class="container border my-1">
+        <p style="text-align:center">
+            &copy; 10/2026 <br />
+            Copyright by @@Chung Trịnh <br />
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </p>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/NxbLayoutHome.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
