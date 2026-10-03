@@ -1,0 +1,3 @@
+@model Blog
+@{ ViewData["Title"] = Model.Name; }
+<div class="wrapper row3"><main class="hoc container clear nxb-content"><div class="nxb-detail"><img src="@Url.Content("~/" + (Model.Image ?? "images/demo/348x261.png").TrimStart('/'))" alt="@Model.Name" /><article><h1>@Model.Name</h1><p>@Model.CreatedDate.ToString("dd/MM/yyyy")</p><p>@Model.Description</p><a class="btn" asp-action="Index">Quay lại</a></article></div></main></div>

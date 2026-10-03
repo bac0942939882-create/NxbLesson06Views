@@ -1,0 +1,10 @@
+@{ ViewData["Title"] = "Minh họa Layout"; Layout = "_BootstrapMain"; }
+<h1>Minh họa Layout, ViewImports và ViewStart</h1>
+<p>View này khai báo Layout riêng. Các view trang người dùng còn lại dùng _main qua _ViewStart.</p>
+<p>Phần này nằm trong vị trí RenderBody của layout.</p>
+<button id="section-demo" class="btn btn-primary">Thử section Scripts</button>
+<p id="section-result" class="mt-3" role="status"></p>
+@section Css { <style>#section-result { color: #156f35; }</style> }
+@section Scripts {
+<script>document.getElementById('section-demo').addEventListener('click', function () { document.getElementById('section-result').textContent = 'Section Scripts đã được nạp từ view vào layout.'; });</script>
+}

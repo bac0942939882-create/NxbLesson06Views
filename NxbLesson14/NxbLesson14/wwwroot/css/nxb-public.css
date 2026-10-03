@@ -1,0 +1,6 @@
+#logo h1 {font-size:24px;white-space:nowrap}
+.nxb-card-image {width:100%;max-width:348px}
+.nxb-price {color:#548bc3;font-weight:bold;font-size:20px}
+.nxb-content {min-height:320px}
+.nxb-detail {display:grid;grid-template-columns:1fr 1fr;gap:30px}
+@media(max-width:700px){.nxb-detail{display:block}#logo h1{font-size:22px}}

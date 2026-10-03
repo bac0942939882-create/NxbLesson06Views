@@ -1,0 +1,21 @@
+@* Layout cuối cùng của phần trang người dùng, ghép từ template Bistup. *@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - NxbLesson14</title>
+    <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="~/css/nxb-public.css" asp-append-version="true" />
+    @await RenderSectionAsync("Css", required: false)
+</head>
+<body id="top">
+    <partial name="_Header" />
+    @RenderBody()
+    <partial name="_Footer" />
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery.backtotop.js"></script>
+    <script src="~/js/jquery.mobilemenu.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,8 @@
+@model Banner
+@{ ViewData["Title"] = "Thêm banner"; }
+<div class="card nxb-form"><div class="card-body"><form asp-action="Create" method="post">
+<partial name="_Form" model="Model" />
+<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu</button>
+<a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
+</form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

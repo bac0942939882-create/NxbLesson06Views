@@ -1,0 +1,5 @@
+@model ErrorViewModel
+@{ ViewData["Title"] = "Lỗi"; }
+<div class="wrapper row3"><main class="hoc container clear"><h1>Không thể xử lý yêu cầu.</h1><p>Vui lòng thử lại.</p>
+@if (Model.ShowRequestId) { <p>Mã yêu cầu: @Model.RequestId</p> }
+</main></div>

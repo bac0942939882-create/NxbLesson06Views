@@ -1,0 +1,5 @@
+@model Category
+@{ ViewData["Title"] = "Xóa danh mục"; }
+<div class="card"><div class="card-body"><div asp-validation-summary="ModelOnly" class="text-danger"></div><p class="text-danger">Bạn có chắc muốn xóa bản ghi này?</p>
+<partial name="_Details" model="Model" /><form asp-action="Delete" asp-route-id="@Model.Id" method="post"><input type="hidden" asp-for="Id" />
+<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Xác nhận xóa</button> <a asp-action="Index" class="btn btn-secondary">Hủy</a></form></div></div>

@@ -1,0 +1,5 @@
+@model IEnumerable<Product>
+@{ ViewData["Title"] = "Sản phẩm"; }
+<div class="wrapper row3"><main class="hoc container clear nxb-content"><h1>Sản phẩm</h1><ul class="nospace group overview">
+@foreach (var item in Model) { <li class="one_third"><figure><a asp-action="Details" asp-route-id="@item.Id"><img class="nxb-card-image" src="@Url.Content("~/" + (item.Image ?? "images/demo/348x261.png").TrimStart('/'))" alt="@item.Name" /></a><figcaption><h2 class="heading">@item.Name</h2><p class="nxb-price">@((item.SalePrice > 0 ? item.SalePrice : item.Price).ToString("N0")) đ</p><p>@item.Description</p><a class="btn" asp-action="Details" asp-route-id="@item.Id">Xem chi tiết</a></figcaption></figure></li> }
+</ul>@if (!Model.Any()) { <p>Chưa có dữ liệu hiển thị.</p> }</main></div>

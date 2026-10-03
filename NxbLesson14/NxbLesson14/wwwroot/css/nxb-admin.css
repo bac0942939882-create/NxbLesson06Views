@@ -1,0 +1,8 @@
+.table td,.table th{vertical-align:middle}
+.action-buttons{white-space:nowrap}.action-buttons .btn{margin-right:3px}
+.nxb-thumb{width:58px;height:45px;object-fit:cover}
+.nxb-form{max-width:900px}.text-danger:empty{display:none}
+.validation-summary-valid{display:none}.validation-summary-errors{color:#b42318}
+.field-validation-error{display:block;font-size:.875rem;color:#b42318}
+.input-validation-error{border-color:#b42318}
+.detail-image{max-width:300px;max-height:220px;object-fit:contain}

@@ -1,0 +1,11 @@
+@model IEnumerable<Blog>
+@{ ViewData["Title"] = "Bài viết"; }
+<div class="card"><div class="card-header d-flex align-items-center"><a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+<form asp-action="Index" method="get" class="form-inline ml-auto"><input name="search" value="@ViewBag.Search" class="form-control mr-2" placeholder="Tìm theo tên" aria-label="Tìm theo tên" /><button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i> Tìm</button></form></div>
+<div class="card-body table-responsive"><table class="table table-bordered table-striped table-hover"><thead><tr><th>ID</th><th>Tên</th><th>Ảnh</th><th>Ngày tạo</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.Id</td><td>@item.Name</td><td>@if (!string.IsNullOrWhiteSpace(item.Image)) { <img src="@Url.Content("~/" + item.Image.TrimStart('/'))" alt="@item.Name" class="nxb-thumb" /> }</td><td>@item.CreatedDate.ToString("dd/MM/yyyy")</td><td><span class="badge @(item.Status == 1 ? "badge-success" : "badge-secondary")">@(item.Status == 1 ? "Hiển thị" : "Ẩn")</span></td>
+<td class="action-buttons"><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm" title="Chi tiết"><i class="fas fa-eye"></i><span class="sr-only">Chi tiết</span></a>
+<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Sửa"><i class="fas fa-edit"></i><span class="sr-only">Sửa</span></a>
+<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Xóa"><i class="fas fa-trash"></i><span class="sr-only">Xóa</span></a></td></tr> }
+@if (!Model.Any()) { <tr><td colspan="10" class="text-center text-muted">Chưa có dữ liệu phù hợp.</td></tr> }
+</tbody></table></div></div>

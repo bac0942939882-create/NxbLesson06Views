@@ -1,0 +1,11 @@
+@{ var current = ViewContext.RouteData.Values["controller"]?.ToString(); }
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="brand-link"><img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE" class="brand-image img-circle elevation-3" /><span class="brand-text font-weight-light">NxbLesson14</span></a>
+<div class="sidebar"><div class="user-panel mt-3 pb-3 mb-3 d-flex"><div class="image"><img src="~/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="Admin" /></div><div class="info"><span class="d-block text-light">Admin</span></div></div>
+<nav class="mt-2"><ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+<li class="nav-item"><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="nav-link @(current == "Dashboard" ? "active" : "")"><i class="nav-icon fas fa-tachometer-alt"></i><p>Trang chính</p></a></li>
+<li class="nav-item"><a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link @(current == "Category" ? "active" : "")"><i class="nav-icon fas fa-list"></i><p>Danh mục</p></a></li>
+<li class="nav-item"><a asp-area="Admin" asp-controller="Product" asp-action="Index" class="nav-link @(current == "Product" ? "active" : "")"><i class="nav-icon fas fa-boxes"></i><p>Sản phẩm</p></a></li>
+<li class="nav-item"><a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="nav-link @(current == "Blog" ? "active" : "")"><i class="nav-icon fas fa-file-alt"></i><p>Blogs</p></a></li>
+<li class="nav-item"><a asp-area="Admin" asp-controller="Banner" asp-action="Index" class="nav-link @(current == "Banner" ? "active" : "")"><i class="nav-icon fas fa-image"></i><p>Banner</p></a></li>
+</ul></nav></div></aside>

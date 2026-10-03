@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>@ViewData["Title"] - NxbLesson14</title><link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@await RenderSectionAsync("Css", required: false)</head><body>
+<nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom"><div class="container"><a class="navbar-brand" asp-controller="Home" asp-action="Index">NxbLesson14</a><a asp-controller="Home" asp-action="About">Giới thiệu</a><a asp-controller="Home" asp-action="Contact">Liên hệ</a></div></nav>
+<main class="container py-4">@RenderBody()</main><footer class="container border-top py-3">&copy; @DateTime.Now.Year - NxbLesson14</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script><script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)</body></html>

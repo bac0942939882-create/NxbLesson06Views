@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NxbLesson14 - Hướng dẫn Visual Studio</title>
+<style>
+body{font:16px/1.65 "Segoe UI",Arial,sans-serif;color:#253347;background:#edf2f7;margin:0}main{max-width:980px;margin:32px auto;background:#fff;padding:42px 52px;border-radius:14px}h1{font-size:32px;color:#17456b;margin:0}h2{color:#17456b;border-top:1px solid #e2e8ef;padding-top:22px;margin-top:32px;font-size:23px}h3{font-size:18px}code{background:#edf2f7;padding:2px 5px;border-radius:4px;color:#16456b}pre{background:#f3f6fa;border:1px solid #d6e0eb;padding:18px;overflow:auto;line-height:1.5}pre code{padding:0;background:none}table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border:1px solid #d8e1eb;padding:10px 12px;text-align:left;vertical-align:top}th{background:#ecf3fa}.note{border-left:4px solid #2a81b8;padding:14px 18px;background:#edf7fd}a{color:#176b9d}.muted{color:#64748b}.steps li{padding-bottom:8px}img{max-width:100%;border:1px solid #d8e1eb;border-radius:5px}footer{color:#64748b;font-size:13px;margin-top:38px}@media(max-width:650px){main{padding:24px;margin:12px}h1{font-size:26px}td,th{padding:7px}}@media print{body{background:white}main{margin:0;padding:0;border-radius:0}h2{break-after:avoid}table,pre{break-inside:avoid}}
+</style></head><body><main>
+<p class="muted">BÀI THỰC HÀNH LAYOUT · ASP.NET CORE MVC</p><h1>NxbLesson14</h1>
+<p>Làm theo các phần trong PDF: Layout, ViewImports, ViewStart, Area, ghép HTML template và CRUD bằng Entity Framework. Tên project được đổi thành <strong>NxbLesson14</strong>.</p>
+<div class="note"><strong>Chạy bản đã làm:</strong> Giải nén toàn bộ ZIP → mở <code>NxbLesson14.sln</code> → chờ khôi phục NuGet → chọn profile <strong>http</strong> → nhấn <strong>Ctrl+F5</strong>. Trang chủ: <code>http://localhost:5140/</code>; Admin: <code>http://localhost:5140/Admin</code>.</div>
+
+<h2>1. Chuẩn bị Visual Studio</h2>
+<ol class="steps"><li>Mở <strong>Visual Studio Installer</strong>, chọn <strong>Modify</strong> ở Visual Studio 2022.</li><li>Tích workload <strong>ASP.NET and web development</strong>.</li><li>Trong <strong>Individual components</strong>, bảo đảm có SDK <strong>.NET 8</strong> và <strong>SQL Server Express LocalDB</strong>. Bản làm sẵn dùng .NET 8.</li></ol>
+
+<h2>2. Chọn đúng template project</h2>
+<ol class="steps"><li>Trong Visual Studio chọn <strong>Create a new project</strong>.</li><li>Lọc <strong>C# → Windows → Web</strong>; tìm tên <strong>ASP.NET Core Web App (Model-View-Controller)</strong>.</li><li>Chọn template này và nhấn <strong>Next</strong>.</li></ol>
+<table><tr><th>Mục cấu hình</th><th>Chọn / nhập</th></tr><tr><td>Project name</td><td><strong>NxbLesson14</strong></td></tr><tr><td>Solution name</td><td><strong>NxbLesson14</strong></td></tr><tr><td>Location</td><td>Thư mục bạn muốn lưu trên máy</td></tr><tr><td>Framework</td><td><strong>.NET 8.0</strong></td></tr><tr><td>Authentication type</td><td>None</td></tr><tr><td>Configure for HTTPS</td><td>Có thể giữ dấu tích mặc định</td></tr><tr><td>Container support</td><td>Không chọn</td></tr></table>
+<p>Nhấn <strong>Create</strong>. Nếu bạn mở solution trong ZIP thì project đã được tạo và không cần thực hiện lại bước này.</p>
+
+<h2>3. Xem Layout, ViewImports và ViewStart</h2>
+<p>Phần này ứng với trang 1–6 của PDF. Mở ba file:</p>
+<table><tr><th>File</th><th>Vai trò</th></tr><tr><td><code>Views/Shared/_Layout.cshtml</code></td><td>Chứa cấu trúc HTML dùng chung: head, menu, footer, CSS và JavaScript. <code>@RenderBody()</code> đặt nội dung view vào layout.</td></tr><tr><td><code>Views/_ViewImports.cshtml</code></td><td>Khai báo namespace và TagHelpers để dùng <code>asp-controller</code>, <code>asp-action</code>, <code>asp-for</code>.</td></tr><tr><td><code>Views/_ViewStart.cshtml</code></td><td>Chọn layout mặc định cho các view trong thư mục Views.</td></tr></table>
+<pre><code>@using NxbLesson14
+@using NxbLesson14.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers</code></pre>
+<p>Layout có các vùng tùy chọn: <code>@await RenderSectionAsync("Css", required: false)</code> trong head và <code>@await RenderSectionAsync("Scripts", required: false)</code> trước khi kết thúc body. View muốn thêm CSS hoặc script khai báo <code>@section Css</code> / <code>@section Scripts</code>.</p>
+
+<h2>4. Tạo và chọn layout _main</h2>
+<ol class="steps"><li>Nhấp phải <code>Views/Shared</code> → <strong>Add → New Item</strong> hoặc <strong>Add → View</strong>.</li><li>Chọn item <strong>Razor Layout</strong> hoặc <strong>Razor View - Empty</strong> để tạo file <code>_main.cshtml</code>.</li><li>Thêm head, menu, CSS/JS Bootstrap và một <code>@RenderBody()</code> vào layout.</li><li>Một view dùng riêng layout có thể khai báo <code>Layout = "_main";</code> ở đầu file.</li><li>Để dùng chung cho trang người dùng, sửa <code>Views/_ViewStart.cshtml</code>:</li></ol>
+<pre><code>@{
+    Layout = "_main";
+}</code></pre>
+<p>Trong bản hoàn chỉnh, <code>_main</code> đã được thay bằng Bistup ở bước 8. Bản Bootstrap của bước này được giữ ở <code>_BootstrapMain.cshtml</code>; mở <code>/Home/LayoutDemo</code> để thử phần layout và section.</p>
+
+<h2>5. Tạo Area Admin</h2>
+<ol class="steps"><li>Nhấp phải project → <strong>Add → New Scaffolded Item</strong>.</li><li>Chọn <strong>MVC Area</strong> → <strong>Add</strong>.</li><li>Nhập tên <strong>Admin</strong>.</li><li>Trong <code>Areas/Admin/Views</code>, tạo thư mục <code>Shared</code>, rồi thêm layout <code>Admin.cshtml</code>.</li><li>Trong <code>Areas/Admin/Views</code>, tạo <code>_ViewImports.cshtml</code> có cùng nội dung như bước 3.</li><li>Tạo <code>_ViewStart.cshtml</code> cho riêng Area:</li></ol>
+<pre><code>@{
+    Layout = "/Areas/Admin/Views/Shared/Admin.cshtml";
+}</code></pre>
+<p>PDF có chỗ ghi “Admins”, nhưng các route và cấu trúc cuối dùng “Admin”. Bản làm sẵn dùng thống nhất <strong>Admin</strong>.</p>
+
+<h2>6. Tạo Dashboard và Category</h2>
+<ol class="steps"><li>Nhấp phải <code>Areas/Admin/Controllers</code> → <strong>Add → Controller</strong>.</li><li>Chọn template <strong>MVC Controller - Empty</strong>; đặt tên <code>DashboardController</code>.</li><li>Thêm thuộc tính <code>[Area("Admin")]</code> trước khai báo class.</li><li>Tạo action <code>Index</code> trả về <code>View()</code>.</li><li>Nhấp phải action Index → <strong>Add View</strong>; chọn tên <strong>Index</strong>, template <strong>Empty (without model)</strong>, tích <strong>Use a layout page</strong>.</li><li>Để trống ô layout khi đã có <code>_ViewStart</code>, hoặc trỏ đến <code>Admin.cshtml</code>.</li><li>Lặp lại với <code>CategoryController</code> và view <code>Category/Index.cshtml</code>.</li></ol>
+<pre><code>namespace NxbLesson14.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class DashboardController : Controller
+{
+    public IActionResult Index() =&gt; View();
+}</code></pre>
+<p>Bản cuối đã mở rộng Dashboard thành bốn ô thống kê thật và Category thành trang CRUD.</p>
+
+<h2>7. Cấu hình route của Area</h2>
+<p>Trong <code>Program.cs</code>, đặt route Area trước route trang người dùng:</p>
+<pre><code>app.MapControllerRoute(
+    "areas",
+    "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    "default",
+    "{controller=Home}/{action=Index}/{id?}");</code></pre>
+<p>Build project. <code>/Admin</code> gọi Dashboard, <code>/Admin/Category</code> gọi Category trong Area.</p>
+
+<h2>8. Ghép template Bistup cho trang người dùng</h2>
+<ol class="steps"><li>Giải nén template <strong>Bistup</strong> như mẫu trong PDF.</li><li>Đưa ảnh vào <code>wwwroot/images</code>, CSS vào <code>wwwroot/css</code>, JavaScript vào <code>wwwroot/js</code>. Giữ cấu trúc thư mục font để CSS tải đúng.</li><li>Lấy phần HTML khung của template đặt vào <code>Views/Shared/_main.cshtml</code>.</li><li>Giữ header, menu và footer trong layout; thay vùng banner/nội dung bằng <code>@RenderBody()</code>.</li><li>Đưa phần banner và nội dung giữa trang vào <code>Views/Home/Index.cshtml</code>.</li><li>Sửa đường dẫn tài nguyên: <code>~/css/layout.css</code>, <code>~/js/jquery.min.js</code>, <code>~/images/demo/348x261.png</code>. Với background CSS inline dùng <code>/images/demo/backgrounds/01.png</code>.</li><li>Đổi menu sang các liên kết <code>asp-controller</code> / <code>asp-action</code> và build lại.</li></ol>
+<p>Bản làm sẵn đã tách header/footer thành partial view <code>_Header.cshtml</code>, <code>_Footer.cshtml</code>. Nội dung hero và các khối giới thiệu/ảnh được giữ theo mẫu Bistup trong tài liệu.</p>
+
+<h2>9. Ghép AdminLTE 3 cho Admin</h2>
+<ol class="steps"><li>Dùng <strong>AdminLTE 3</strong> như phần bài tập tự làm.</li><li>Chép các tài nguyên cần dùng trong <code>dist</code> và <code>plugins</code> vào <code>wwwroot</code>.</li><li>Dùng khung HTML của AdminLTE cho <code>Areas/Admin/Views/Shared/Admin.cshtml</code>.</li><li>Đặt <code>@RenderBody()</code> bên trong vùng <code>content-wrapper → content</code>.</li><li>Nạp CSS Font Awesome + AdminLTE; cuối body nạp jQuery, Bootstrap bundle và AdminLTE JS.</li><li>Giữ các menu phù hợp với bài: Dashboard, Category, Product, Blog và Banner.</li></ol>
+<table><tr><th>Tài nguyên chính</th><th>Đường dẫn</th></tr><tr><td>CSS AdminLTE</td><td><code>~/dist/css/adminlte.min.css</code></td></tr><tr><td>Font Awesome</td><td><code>~/plugins/fontawesome-free/css/all.min.css</code></td></tr><tr><td>jQuery</td><td><code>~/plugins/jquery/jquery.min.js</code></td></tr><tr><td>Bootstrap</td><td><code>~/plugins/bootstrap/js/bootstrap.bundle.min.js</code></td></tr><tr><td>JS AdminLTE</td><td><code>~/dist/js/adminlte.min.js</code></td></tr></table>
+
+<h2>10. Tách menu thành ViewComponent</h2>
+<p>Tạo <code>ViewComponents/NavLeftViewComponent.cs</code> với phương thức <code>Invoke()</code> trả về <code>View()</code>. Đặt HTML sidebar tại <code>Areas/Admin/Views/Shared/Components/NavLeft/Default.cshtml</code>.</p>
+<pre><code>@await Component.InvokeAsync("NavLeft")</code></pre>
+<p>Bản hoàn chỉnh còn tách <strong>AdminHeader</strong> và <strong>AdminFooter</strong> thành ViewComponent. Khi chuyển trang quản trị, menu tương ứng được đánh dấu đang chọn.</p>
+
+<h2>11. Tạo model và DbContext</h2>
+<p>Cài qua <strong>Tools → NuGet Package Manager → Manage NuGet Packages for Solution</strong>: <code>Microsoft.EntityFrameworkCore.SqlServer</code>, <code>Microsoft.EntityFrameworkCore.Design</code>. Bản làm sẵn thêm provider SQLite để chạy thử khi chưa có SQL Server.</p>
+<table><tr><th>Model</th><th>Các trường</th></tr><tr><td>Category</td><td>Id, Name, Status, CreatedDate, Image, Description</td></tr><tr><td>Product</td><td>Id, Name, Price, salePrice, Status, CategoryId, CreatedDate, Image, Description</td></tr><tr><td>Banner</td><td>Id, Name, Status, <strong>Prioty</strong>, Image, Description</td></tr><tr><td>Blog</td><td>Id, Name, Status, CreatedDate, Image, Description</td></tr></table>
+<p>Tạo <code>Data/NxbLesson14Context.cs</code>; khai báo bốn DbSet, khóa chính tự tăng, Name unique, các độ dài 100/350 và khóa ngoại Product → Category. Thuộc tính C# <code>SalePrice</code> được ánh xạ vào cột <code>salePrice</code>; giữ tên cột <code>Prioty</code> đúng đề.</p>
+<p>Trong <code>appsettings.json</code> đã có connection string đến <strong>NxbLesson14Db</strong> qua SQL Server LocalDB. <code>Program.cs</code> đăng ký DbContext và gọi phần tạo CSDL/dữ liệu mẫu ở lần chạy đầu.</p>
+
+<h2>12. Tạo CRUD cho bốn thực thể</h2>
+<ol class="steps"><li>Nhấp phải <code>Areas/Admin/Controllers</code> → <strong>Add → New Scaffolded Item</strong>.</li><li>Chọn <strong>MVC Controller with views, using Entity Framework</strong>.</li><li>Chọn Model class tương ứng và Data context class là <strong>NxbLesson14Context</strong>.</li><li>Controller name: lần lượt <code>CategoryController</code>, <code>ProductController</code>, <code>BannerController</code>, <code>BlogController</code>.</li><li>Chọn layout Admin; kiểm tra namespace, thuộc tính <code>[Area("Admin")]</code> và vị trí các view sau khi sinh.</li><li>Bổ sung kiểm tra tên trùng, khoảng trắng, giá và khóa ngoại. Các view danh sách dùng bảng Bootstrap 4; nút thao tác dùng icon Font Awesome.</li></ol>
+<p>Trong bản làm sẵn, bốn controller và toàn bộ Index/Create/Edit/Details/Delete đã hoàn thành. Product có danh sách chọn Category. Mỗi form có validation, thông báo lỗi và nút quay lại; xóa có trang xác nhận.</p>
+
+<h2>13. Kiểm tra kết quả</h2>
+<table><tr><th>Thao tác</th><th>Kết quả cần thấy</th></tr><tr><td>Mở <code>/</code></td><td>Giao diện Bistup có header, menu, banner, nội dung và footer.</td></tr><tr><td>Mở <code>/Admin</code></td><td>Giao diện AdminLTE 3, menu trái và bốn ô thống kê.</td></tr><tr><td>Thêm / sửa / chi tiết / xóa</td><td>Cả bốn thực thể đều thao tác được và lưu dữ liệu.</td></tr><tr><td>Nhập tên trống hoặc tên trùng</td><td>Form hiện lỗi, không tạo bản ghi sai.</td></tr><tr><td>Xóa Category đang có Product</td><td>Hiện thông báo cần xử lý sản phẩm trước.</td></tr><tr><td>Đặt Product hoặc Blog ở trạng thái 0</td><td>Trang người dùng không hiển thị bản ghi đó.</td></tr><tr><td>Mở <code>/Home/LayoutDemo</code></td><td>Thấy layout Bootstrap riêng; nút thử script hoạt động.</td></tr></table>
+
+<h2>14. Nếu máy chưa có SQL Server</h2>
+<p>Để chạy nhanh, trong <code>appsettings.json</code> đổi <code>"DatabaseProvider": "SqlServer"</code> thành <code>"DatabaseProvider": "Sqlite"</code>. File CSDL được tự tạo khi chạy. Khi đã cài LocalDB, có thể đổi lại SqlServer; hai provider dùng hai CSDL riêng.</p>
+<p>Nếu dùng SQL Server Express, sửa server trong connection string thành <code>.\SQLEXPRESS</code> (trong JSON phải viết <code>.\\SQLEXPRESS</code>). Xem chi tiết ở <strong>README.md</strong>.</p>
+
+<footer>Tài liệu đi kèm source NxbLesson14. Giao diện: Bistup / OS Templates và AdminLTE 3. Giữ thông tin tác giả và licence trong mã nguồn.</footer>
+</main></body></html>
